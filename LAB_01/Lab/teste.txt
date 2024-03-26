@@ -1,13 +1,14 @@
+{program () ; . - +}
 testando program;
-pra ver se program da certo
+pra ver se program da certo65
 testando) program
 pra ver se program da certo
-testando program()
+testando program()4
 pra ver se program da certo
-testando program*
+testando program*01 STRING"string"
 pra ver se program da certo
-testando program
+testando program8
 pra ver se program da certo
-testando program*
-pra ver se program da certo
-begin program///:=
+testando program*45
+pra ver se program da certo090978.88888546345
+begin program///:=7.7
