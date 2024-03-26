@@ -1,0 +1,13 @@
+testando program;
+pra ver se program da certo
+testando) program
+pra ver se program da certo
+testando program()
+pra ver se program da certo
+testando program*
+pra ver se program da certo
+testando program
+pra ver se program da certo
+testando program*
+pra ver se program da certo
+begin program///:=
