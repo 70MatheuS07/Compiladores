@@ -8,10 +8,10 @@
 int yylex(void);
 void yyerror(char const *s);
 %}
-%token NUMBER MULTI DIV PLUS MINUS ENTER
+%token NUMBER MULTI DIV PLUS MINUS ENTER LPAR RPAR
 %%
-line: expr ENTER ;
-expr: expr op expr | NUMBER ;
+line: expr ENTER line | %empty ;
+expr: expr op expr | LPAR expr RPAR | NUMBER ;
 op: MULTI | DIV | PLUS | MINUS ;
 %%
 int main(void) {

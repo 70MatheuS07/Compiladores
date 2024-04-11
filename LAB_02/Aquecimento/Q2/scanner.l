@@ -14,8 +14,9 @@
 "/"     { return DIV; }
 "+"     { return PLUS; }
 "-"     { return MINUS; }
+"("     { return LPAR; }
+")"     { return RPAR; }
 "\n"    { return ENTER; }
-<<EOF>> { return EOF; }
 " "     { /* ignore spaces */ }
 .       { printf("LEXICAL ERROR: Unknown symbol %s\n", yytext);
           exit(EXIT_FAILURE); }

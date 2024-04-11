@@ -8,11 +8,12 @@
 int yylex(void);
 void yyerror(char const *s);
 %}
-%token NUMBER MULTI DIV PLUS MINUS ENTER
+%token ZERO ONE IF ELSE OTHER LPAR RPAR ENTER
 %%
-line: expr ENTER ;
-expr: expr op expr | NUMBER ;
-op: MULTI | DIV | PLUS | MINUS ;
+line: statement ENTER line | %empty ;
+statement: if-stmt | OTHER ;
+if-stmt: IF expr statement | IF expr statement ELSE statement ;
+expr: LPAR ZERO RPAR | LPAR ONE RPAR ;
 %%
 int main(void) {
     if (yyparse() == 0) printf("PARSE SUCCESSFUL!\n");

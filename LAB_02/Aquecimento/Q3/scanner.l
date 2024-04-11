@@ -9,13 +9,14 @@
 
 %%
 
-[0-9]+  { return NUMBER; }
-"*"     { return MULTI; }
-"/"     { return DIV; }
-"+"     { return PLUS; }
-"-"     { return MINUS; }
+"if"    { return IF; }
+"else"  { return ELSE; }
+"other" { return OTHER; }
+"0"     { return ZERO; }
+"1"     { return ONE; }
+"("     { return LPAR; }
+")"     { return RPAR; }
 "\n"    { return ENTER; }
-<<EOF>> { return EOF; }
 " "     { /* ignore spaces */ }
 .       { printf("LEXICAL ERROR: Unknown symbol %s\n", yytext);
           exit(EXIT_FAILURE); }
