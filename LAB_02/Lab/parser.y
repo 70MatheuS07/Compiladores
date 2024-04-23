@@ -5,7 +5,6 @@
 
 %{
 #include <stdio.h>
-#include <string.h>
 int yylex(void);
 void yyerror(const char *s) {
     fprintf(stderr, "%s\n", s);
@@ -13,16 +12,22 @@ void yyerror(const char *s) {
 %}
 
 %token PROGRAM ID SEMI VAR BOOL INT REAL STRING
-%token BEGIN END IF THEN ELSE REPEAT UNTIL ASSIGN READ WRITE LT EQ PLUS MINUS TIMES OVER LPAR RPAR TRUE FALSE INT_VAL REAL_VAL STR_VAL
+%token BE_GIN END IF THEN ELSE REPEAT UNTIL ASSIGN READ WRITE LT EQ PLUS MINUS TIMES OVER LPAR RPAR TRUE FALSE INT_VAL REAL_VAL STR_VAL
 
-//%left PLUS MINUS
-//%left TIMES OVER
-//%right ASSIGN
+%left PLUS MINUS
+%left TIMES OVER
+%nonassoc LT EQ
+%right ASSIGN
 
 %%
 
-program:
-    PROGRAM ID SEMI vars_sect stmt_sect
+start:
+    opt_program_decl vars_sect stmt_sect
+    ;
+
+opt_program_decl:
+    PROGRAM ID SEMI
+    | /* empty */
     ;
 
 vars_sect:
@@ -31,7 +36,7 @@ vars_sect:
 
 opt_var_decl:
     var_decl_list
-    | /* vazio */
+    | /* empty */
     ;
 
 var_decl_list:
@@ -51,7 +56,7 @@ type_spec:
     ;
 
 stmt_sect:
-    BEGIN stmt_list END
+    BE_GIN stmt_list END
     ;
 
 stmt_list:

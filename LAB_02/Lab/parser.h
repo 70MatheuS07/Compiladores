@@ -62,7 +62,7 @@ extern int yydebug;
     INT = 263,                     /* INT  */
     REAL = 264,                    /* REAL  */
     STRING = 265,                  /* STRING  */
-    BEGIN = 266,                   /* BEGIN  */
+    BE_GIN = 266,                  /* BE_GIN  */
     END = 267,                     /* END  */
     IF = 268,                      /* IF  */
     THEN = 269,                    /* THEN  */

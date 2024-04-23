@@ -3,7 +3,7 @@ all: bison flex gcc
 	@echo "Done."
 
 bison: parser.y
-	bison parser.y
+	bison parser.y -Wcounterexamples
 
 flex: scanner.l
 	flex scanner.l

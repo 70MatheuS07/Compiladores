@@ -5,6 +5,6 @@ program hello;
 
 var { No variables needed }
 
-begin
+be_gin
     write "Hello, world!\n";
 end

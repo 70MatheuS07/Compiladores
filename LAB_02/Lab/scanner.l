@@ -32,7 +32,7 @@ comentario  \{[^{}]*\}
                         }
                     }
 
-"begin"|"bool"|"else"|"end"|"false"|"if"|"int"|"program"|"read"|"real"|"repeat"|"string"|"then"|"true"|"until"|"var"|"write" {   
+"be_gin"|"bool"|"else"|"end"|"false"|"if"|"int"|"program"|"read"|"real"|"repeat"|"string"|"then"|"true"|"until"|"var"|"write" {   
                         char *transformada = TransformaPalavra(yytext);
                         printf("%d: %s -> %s\n", lines, yytext, transformada);
                         free(transformada);
@@ -73,12 +73,8 @@ comentario  \{[^{}]*\}
 "#"           { printf("LEXICAL ERROR (%d): Unknown symbol #", lines); exit(1); }
 
 .|" "          {  }
-%%
 
-int main() {
-    yylex();
-    return 0;
-}
+%%
 
 char* TransformaPalavra(char *palavra) {
     int i;
