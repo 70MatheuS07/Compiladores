@@ -21,13 +21,8 @@ void yyerror(const char *s) {
 
 %%
 
-start:
-    opt_program_decl vars_sect stmt_sect
-    ;
-
-opt_program_decl:
-    PROGRAM ID SEMI
-    | /* empty */
+program:
+    PROGRAM ID SEMI vars_sect stmt_sect
     ;
 
 vars_sect:
@@ -35,8 +30,8 @@ vars_sect:
     ;
 
 opt_var_decl:
-    var_decl_list
-    | /* empty */
+    %empty
+    | var_decl_list
     ;
 
 var_decl_list:
