@@ -11,6 +11,7 @@
 %{
 #include "types.h"
 #include "tables.h"
+#include "ast.h"
 #include "parser.h"
 
 #define process_token(type) return type
@@ -36,7 +37,8 @@ comments    \{[^}]*\}
 "bool"      { process_token(BOOL); }
 "else"      { process_token(ELSE); }
 "end"       { process_token(END); }
-"false"     { process_token(FALSE); }
+"false"     { yylval = new_node(BOOL_VAL_NODE, 0, BOOL_TYPE);
+              process_token(FALSE); }
 "if"        { process_token(IF); }
 "int"       { process_token(INT); }
 "program"   { process_token(PROGRAM); }
@@ -45,7 +47,8 @@ comments    \{[^}]*\}
 "repeat"    { process_token(REPEAT); }
 "string"    { process_token(STRING); }
 "then"      { process_token(THEN); }
-"true"      { process_token(TRUE); }
+"true"      { yylval = new_node(BOOL_VAL_NODE, 1, BOOL_TYPE);
+              process_token(TRUE); }
 "until"     { process_token(UNTIL); }
 "var"       { process_token(VAR); }
 "write"     { process_token(WRITE); }
@@ -61,9 +64,13 @@ comments    \{[^}]*\}
 ";"         { process_token(SEMI); }
 "*"         { process_token(TIMES); }
 
-{int_val}   { process_token(INT_VAL); }
-{real_val}  { process_token(REAL_VAL); }
-{str_val}   { add_string(st, yytext); process_token(STR_VAL); }
+{int_val}   { yylval = new_node(INT_VAL_NODE, atoi(yytext), INT_TYPE);
+              process_token(INT_VAL); }
+{real_val}  { yylval = new_node(REAL_VAL_NODE, 0, REAL_TYPE);
+              set_float_data(yylval, (float) atof(yytext));
+              process_token(REAL_VAL); }
+{str_val}   { yylval = new_node(STR_VAL_NODE, add_string(st, yytext), STR_TYPE);
+              process_token(STR_VAL); }
 
 {id}        { process_token(ID); }
 
