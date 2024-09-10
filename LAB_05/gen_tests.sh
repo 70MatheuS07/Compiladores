@@ -1,7 +1,7 @@
 #!/bin/bash
 
 YEAR=$(pwd | grep -o '20..-.')
-DATA=/home/zambon/Teaching/$YEAR/CC/labs/io
+DATA=/home/nidrog/Compiladores/LAB_05
 IN=$DATA/in
 OUT=$DATA/out05_c
 
